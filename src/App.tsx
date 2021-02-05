@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
+import PageHeader from './Layout/PageHeader';
 
-function App() {
+const App = () => {
   return (
-    <div>
-     
-    </div>
+    <React.Fragment>
+      <PageHeader></PageHeader>
+      <div>
+        <div>Posts</div>
+        <div>Detail</div>
+      </div>
+      
+    </React.Fragment>
   );
-}
+};
 
 export default App;

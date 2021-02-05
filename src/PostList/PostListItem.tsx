@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 
 interface PostListItemProperties {
     id: string;
@@ -16,7 +17,10 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
 
     return (
         <div>
-            <header>{author} {created_utc}</header>
+            <header>
+                <span>{author}</span>
+                <span><Moment fromNow>{created_utc}</Moment></span>
+            </header>
             <img src={thumbnail} alt={title}></img>
             <label>{title}</label>
             <div>
