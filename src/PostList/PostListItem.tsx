@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
 
 interface PostListItemProperties {
@@ -65,6 +65,9 @@ const StyledTitleLabel = styled.label`
     cursor: pointer;
     font-size: 17px;
     letter-spacing: 0.5px;
+    ${({postWasRead}) => postWasRead && css`
+        color: lightgray;
+    `}
 `;
 
 const StyledAuthorHeader = styled.header`
@@ -85,7 +88,7 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
     const [postWasRead, setPostWasRead] = React.useState(false);
 
     return (
-        <StyledDiv>
+        <StyledDiv onClick={() => setPostWasRead(true)}>
             <StyledCardHeader>
                 <StyledDismissPostSpan>&#10005;</StyledDismissPostSpan>
             </StyledCardHeader>
@@ -94,7 +97,7 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
                     <img src={thumbnail} width="100%" height="100%"/>
                 </StyledImageContainer>
                 <StyledPostInfo>
-                    <StyledTitleLabel>{title}</StyledTitleLabel>
+                    <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
                     <StyledAuthorHeader>
                         <span>{`Sent by ${author} `}<Moment fromNow>{created_utc}</Moment></span>
                     </StyledAuthorHeader>
