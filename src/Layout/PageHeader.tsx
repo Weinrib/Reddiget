@@ -7,8 +7,6 @@ const StyledPageHeader = styled.div`
     background-color: #282c34;
     color: white;
     max-height: 100px;
-    top: 0;
-    position: fixed;
     width: 100%;
     padding: 10px;
     display: flex;
