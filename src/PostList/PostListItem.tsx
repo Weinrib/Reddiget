@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
 
@@ -10,6 +10,7 @@ interface PostListItemProperties {
     url: string;
     thumbnail: string;
     num_comments: number;
+    onRemove: (id: string) => any;
 }
 
 const StyledDiv = styled.div`
@@ -83,14 +84,19 @@ const StyledComments = styled.div`
     }
 `;
 
-const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comments }: PostListItemProperties) => {
+const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comments, onRemove }: PostListItemProperties) => {
 
     const [postWasRead, setPostWasRead] = React.useState(false);
+
+    const onDismiss = (e: SyntheticEvent, id: string) => {
+        onRemove(id);
+        e.stopPropagation();
+    };
 
     return (
         <StyledDiv onClick={() => setPostWasRead(true)}>
             <StyledCardHeader>
-                <StyledDismissPostSpan>&#10005;</StyledDismissPostSpan>
+                <StyledDismissPostSpan onClick={(e) => onDismiss(e, id)}>&#10005;</StyledDismissPostSpan>
             </StyledCardHeader>
             <StyledPostContent>
                 <StyledImageContainer>

@@ -3,15 +3,13 @@ import styled from 'styled-components';
 import RedditLogo from '../resources/reddit_icon_svg.svg';
 
 const StyledPageHeader = styled.div`
-    text-align: center;
     background-color: #282c34;
     color: white;
-    max-height: 100px;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     display: flex;
-    justify-content: center
+    justify-content: center;
 `;
 
 const StyledRedditLogo = styled.img`
@@ -22,7 +20,7 @@ const StyledH1WithLeftMargin = styled.h1`
     margin-left: 10px;
 `;
 
-const PageHeader = () => {
+const Navbar = () => {
     return (
         <StyledPageHeader>
             <StyledRedditLogo src={RedditLogo}></StyledRedditLogo>
@@ -31,4 +29,4 @@ const PageHeader = () => {
     )
 };
 
-export default PageHeader;
+export default Navbar;

@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import PageHeader from './Layout/PageHeader';
 import styled from 'styled-components';
 import PostList from './PostList/PostList';
+import Navbar from './Layout/Navbar';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -16,14 +16,13 @@ const StyledPostsContainer = styled.div`
   flex-basis: 40%;
 `;
 
-
 const App = () => {
   return (
     <React.Fragment>
-      <PageHeader></PageHeader>
-      <StyledContainer>
+      <Navbar></Navbar>
+      <StyledContainer className="row">
         <StyledPostsContainer><PostList/></StyledPostsContainer>
-       
+
       </StyledContainer>
     </React.Fragment>
   );
