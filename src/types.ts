@@ -7,7 +7,7 @@ export interface Post {
     thumbnail: string;
     num_comments: number;
     is_video: boolean;
-    is_self: boolean;
-    over_18: boolean;
-    selftext: string;
+    is_self?: boolean;
+    over_18?: boolean;
+    selftext?: string;
 };

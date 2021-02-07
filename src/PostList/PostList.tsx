@@ -179,7 +179,7 @@ const PostList = () => {
                     </animated.div>
                 )
             })}
-|        </StyledPageListContainer>
+        </StyledPageListContainer>
     );
 
 }

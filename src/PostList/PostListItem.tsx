@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 import { Post } from '../types';
 
-interface PostListItemProperties extends Post {
+interface PostListItemProperties extends Partial<Post> {
     onRemove: (id: string) => any;
 }
 
@@ -94,16 +94,29 @@ const StyledTitleLabel = styled.label`
     `}
 `;
 
-const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comments, onRemove }: PostListItemProperties) => {
+const PostListItem = (
+    {
+        id,
+        title,
+        author,
+        created_utc,
+        url,
+        thumbnail,
+        num_comments,
+        is_video,
+        onRemove 
+    }: PostListItemProperties) => {
 
     const [postWasRead, setPostWasRead] = React.useState(false);
 
-    const onDismiss = (e: SyntheticEvent, id: string) => {
+    const onDismiss = (e: SyntheticEvent, id?: string) => {
+        if(!id) return;
+
         onRemove(id);
         e.stopPropagation();
     };
 
-    const onClickThumbOpenOnNewTab = (e: SyntheticEvent, url: string): void => {
+    const onClickThumbOpenOnNewTab = (e: SyntheticEvent, url?: string): void => {
         if (!url) return;
 
         window.open(url, '_blank');
@@ -129,7 +142,6 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
                     </StyledComments>
                 </StyledPostInfo>
             </StyledPostContent>
-
         </StyledDiv>
     );
 }
