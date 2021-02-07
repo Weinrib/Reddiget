@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
+import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 
 interface PostListItemProperties {
     id: string;
@@ -71,19 +72,6 @@ const StyledTitleLabel = styled.label`
     `}
 `;
 
-const StyledAuthorHeader = styled.header`
-    font-size: 14px;
-    color: lightgray;
-`;
-
-const StyledComments = styled.div`
-    margin-top:15px;
-    color: lightgray;
-    :hover {
-        color: white;
-    }
-`;
-
 const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comments, onRemove }: PostListItemProperties) => {
 
     const [postWasRead, setPostWasRead] = React.useState(false);
@@ -105,7 +93,7 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
                     <StyledAuthorHeader>
-                        <span>{`Sent by ${author} `}<Moment fromNow>{created_utc}</Moment></span>
+                        <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment fromNow>{created_utc}</Moment></span>
                     </StyledAuthorHeader>
                     <StyledComments>
                         <span>{`${num_comments} comments`}</span>

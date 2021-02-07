@@ -10,6 +10,9 @@ const StyledPageHeader = styled.div`
     padding-bottom: 10px;
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
 `;
 
 const StyledRedditLogo = styled.img`
