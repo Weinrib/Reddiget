@@ -10,4 +10,4 @@ export interface Post {
     is_self: boolean;
     over_18: boolean;
     selftext: string;
-}
+};

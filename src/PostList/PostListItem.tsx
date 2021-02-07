@@ -2,15 +2,9 @@ import React, { SyntheticEvent } from 'react';
 import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
+import { Post } from '../types';
 
-interface PostListItemProperties {
-    id: string;
-    title: string;
-    author: string;
-    created_utc: number;
-    url: string;
-    thumbnail: string;
-    num_comments: number;
+interface PostListItemProperties extends Post {
     onRemove: (id: string) => any;
 }
 
