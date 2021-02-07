@@ -6,6 +6,8 @@ import Navbar from './Layout/Navbar';
 import { animated, useTransition, UseTransitionResult } from 'react-spring';
 import PostDetail from './PostDetail/PostDetail';
 import Pagination from './Layout/Pagination';
+import { Provider } from 'react-redux';
+import { store } from './Store/store';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -49,16 +51,18 @@ const App = () => {
   });
 
   return (
-    <React.Fragment>
-      <Navbar></Navbar>
-      <StyledContainer>
-        <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
-          <Pagination></Pagination>
-          <PostList />
-        </StyledPostsContainer>
-        {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
-      </StyledContainer>
-    </React.Fragment>
+    <Provider store={store}>
+      <React.Fragment>
+        <Navbar></Navbar>
+        <StyledContainer>
+          <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
+            <Pagination></Pagination>
+            <PostList />
+          </StyledPostsContainer>
+          {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
+        </StyledContainer>
+      </React.Fragment>
+    </Provider>
   );
 };
 
