@@ -49,7 +49,9 @@ const StyledCardHeader = styled.div`
 
 const StyledImageContainer = styled.div`
     max-height: 140px;
-    max-width: 150px;
+    max-width: 200px;
+    display: flex;
+    flex-basis: 40%;
 `;
 
 const StyledPostContent = styled.div`

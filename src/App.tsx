@@ -30,7 +30,7 @@ const App = () => {
 
   const deviceWithAppliesForSplitLayout = window.innerWidth >= 1000;
 
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = React.useState(true);
 
   const transitions = useTransition(toggle, null, {
     config: { delay: 2000 },
@@ -41,7 +41,6 @@ const App = () => {
   return (
     <React.Fragment>
       <Navbar></Navbar>
-      <button onClick={() => setToggle(true)}>lalalala</button>
       <StyledContainer className="row">
         <StyledPostsContainer>
           <Pagination/>

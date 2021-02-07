@@ -25,10 +25,18 @@ const StyledButton = styled.button`
 
 const StyledContainer = styled(StyledCenteredDiv)`
     position: sticky;
-    top: 7.5%;
+    top: 5%;
     z-index: 99999;
     background-color: #282c34;
     padding: 10px;
+
+    @media only screen and (max-height: 950px) {
+        top: 8.5%;
+    }
+
+    @media only screen and (max-height: 768px) {
+        top: 10%;
+    }
 `;
 
 const Pagination = () => {

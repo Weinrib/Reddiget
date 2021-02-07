@@ -13,7 +13,24 @@ const StyledContainer = styled.div`
     color: white;
     flex-grow: 1;
     position: sticky;
-    top: 15%;
+    top: 20%;
+
+    @media only screen and (max-height: 950px) {
+        top: 25%;
+    }
+
+    @media only screen and (max-height: 800px) {
+        top: 28%;
+    }
+
+    @media only screen and (max-height: 768px) {
+        top: 25%;
+    }
+
+    @media only screen and (max-height: 700px) {
+        top: 34%;
+    }
+
 `;
 
 const StyledImageContainer = styled.div`
@@ -21,7 +38,6 @@ const StyledImageContainer = styled.div`
     justify-content: center;
     max-height: 250px;
 `;
-
 
 const FLEX_WITH_MARGIN_STYLE = {
     ...FLEX_CENTER_STYLE,
