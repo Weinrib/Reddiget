@@ -11,3 +11,10 @@ export interface Post {
     over_18?: boolean;
     selftext?: string;
 };
+
+export interface Page<T> {
+    data: Array<T>;
+    before: string;
+    after: string;
+    modhash: string;
+}
