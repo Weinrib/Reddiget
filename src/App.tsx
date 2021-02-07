@@ -3,9 +3,9 @@ import './App.css';
 import styled from 'styled-components';
 import PostList from './PostList/PostList';
 import Navbar from './Layout/Navbar';
-import { useSpring, animated, useTransition } from 'react-spring';
+import { animated, useTransition } from 'react-spring';
 import PostDetail from './PostDetail/PostDetail';
-import Sticky from 'react-stickynode';
+import Pagination from './Layout/Pagination';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -43,7 +43,10 @@ const App = () => {
       <Navbar></Navbar>
       <button onClick={() => setToggle(true)}>lalalala</button>
       <StyledContainer className="row">
-        <StyledPostsContainer><PostList /></StyledPostsContainer>
+        <StyledPostsContainer>
+          <Pagination/>
+          <PostList />
+        </StyledPostsContainer>
         {
           transitions.map(({ item, key, props }) => {
             return item && <StyledDetailsContainer style={props}><PostDetail /></StyledDetailsContainer>
