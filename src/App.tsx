@@ -3,7 +3,7 @@ import './App.css';
 import styled, { css } from 'styled-components';
 import PostList from './PostList/PostList';
 import Navbar from './Layout/Navbar';
-import { animated, useTransition } from 'react-spring';
+import { animated, useTransition, UseTransitionResult } from 'react-spring';
 import PostDetail from './PostDetail/PostDetail';
 import Pagination from './Layout/Pagination';
 
@@ -29,6 +29,13 @@ const StyledDetailsContainer = styled(animated.div)`
   flex-basis: 50%;
 `;
 
+
+const buildDetailsContainer = (transitions: Array<UseTransitionResult<boolean, Pick<React.CSSProperties, any>>>) => {
+  return transitions.map(({ item, key, props }) => {
+    return item && <StyledDetailsContainer style={props}><PostDetail /></StyledDetailsContainer>
+  });
+};
+
 const App = () => {
 
   const deviceAppliesForSplitLayout = window.innerWidth >= 1100;
@@ -49,11 +56,7 @@ const App = () => {
           <Pagination></Pagination>
           <PostList />
         </StyledPostsContainer>
-        {
-          deviceAppliesForSplitLayout && transitions.map(({ item, key, props }) => {
-            return item && <StyledDetailsContainer style={props}><PostDetail /></StyledDetailsContainer>
-          })
-        }
+        {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
       </StyledContainer>
     </React.Fragment>
   );

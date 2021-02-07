@@ -34,12 +34,33 @@ const StyledContainer = styled.div`
     @media only screen and (max-height: 500px) {
         align-items: center;
     }
-
 `;
 
 const StyledImageContainer = styled.div`
     display: flex;
     justify-content: center;
+    align-self:center;
+
+    @media only screen and (max-width: 700px) {
+        max-width: 250px;
+        max-height: 300px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        max-height: 250px;
+    }
+
+    @media only screen and (max-width: 500px) {
+        max-height: 225px;
+    }
+
+    @media only screen and (max-width: 400px) {
+        max-height: 200px;
+    }
+`;
+
+const StyledTitleContainer = styled(StyledCenteredDiv)`
+    text-align: center;
 `;
 
 const FLEX_WITH_MARGIN_STYLE = {
@@ -51,9 +72,9 @@ const FLEX_WITH_MARGIN_STYLE = {
 const PostDetail = () => {
     return (
         <StyledContainer>
-            <StyledCenteredDiv>
+            <StyledTitleContainer>
                 <h3>My son always texts to, and wanted to share.</h3>
-            </StyledCenteredDiv>
+            </StyledTitleContainer>
             <StyledImageContainer>
                 <img src="https://i.redd.it/ll5vz9bigwf61.gif" />
             </StyledImageContainer>
