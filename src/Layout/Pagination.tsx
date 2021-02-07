@@ -21,6 +21,10 @@ const StyledButton = styled.button`
         color: orangered;
         background-color: white;        
     }
+
+    @media only screen and (max-width: 450px) {
+        font-size: 12px;
+    }
 `;
 
 const StyledContainer = styled(StyledCenteredDiv)`
@@ -28,14 +32,35 @@ const StyledContainer = styled(StyledCenteredDiv)`
     top: 5%;
     z-index: 99999;
     background-color: #282c34;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    @media only screen and (max-height: 1400px) {
+        top: 6%;
+    }
+
+    @media only screen and (max-height: 1200px) {
+        top: 8%;
+    }
 
     @media only screen and (max-height: 950px) {
         top: 8.5%;
     }
 
+    @media only screen and (max-height: 850px) {
+        top: 9.5%;
+    }
+
     @media only screen and (max-height: 768px) {
         top: 10%;
+    }
+
+    @media only screen and (max-height: 750px) {
+        top: 10.5%;
+    }
+
+    @media only screen and (max-height: 700px) {
+        top: 12%;
     }
 `;
 

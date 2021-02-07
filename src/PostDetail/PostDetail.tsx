@@ -31,12 +31,15 @@ const StyledContainer = styled.div`
         top: 34%;
     }
 
+    @media only screen and (max-height: 500px) {
+        align-items: center;
+    }
+
 `;
 
 const StyledImageContainer = styled.div`
     display: flex;
     justify-content: center;
-    max-height: 250px;
 `;
 
 const FLEX_WITH_MARGIN_STYLE = {

@@ -21,15 +21,22 @@ const StyledDiv = styled.div`
     margin-top: 5px;
     padding: 10px;
     transition: transform .2s ease-in;
-    margin-left:20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    ${({postWasRead}) => postWasRead && css`
+        border-color: #ff450042;
+    `}
 
     :hover {
         cursor: pointer;
         transform: scale(1.025);
         box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    @media only screen and (max-width: 500px) {
+        flex-direction: column;
     }
 `;
 
@@ -44,7 +51,11 @@ const StyledDismissPostSpan = styled.span`
 
 const StyledCardHeader = styled.div`
     text-align: right;
-    order: 4
+    order: 4;
+
+    @media only screen and (max-width: 500px) {
+        order: 1;
+    }
 `;
 
 const StyledImageContainer = styled.div`
@@ -52,16 +63,31 @@ const StyledImageContainer = styled.div`
     max-width: 200px;
     display: flex;
     flex-basis: 40%;
+
+    @media only screen and (max-width: 500px) {
+        flex-basis: 100%;
+    }
 `;
 
 const StyledPostContent = styled.div`
     display: flex;
+
+    @media only screen and (max-width: 500px) {
+        flex-wrap: wrap;
+        order: 2;
+        justify-content: center;
+    }
 `;
 
 const StyledPostInfo = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 15px;
+
+    @media only screen and (max-width: 500px) {
+        margin-top: 15px;
+        align-items: center;
+    }
 `;
 
 const StyledTitleLabel = styled.label`
@@ -84,7 +110,7 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
     };
 
     return (
-        <StyledDiv onClick={() => setPostWasRead(true)}>
+        <StyledDiv postWasRead={postWasRead} onClick={() => setPostWasRead(true)}>
             <StyledCardHeader>
                 <StyledDismissPostSpan onClick={(e) => onDismiss(e, id)}>&#10005;</StyledDismissPostSpan>
             </StyledCardHeader>
