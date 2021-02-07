@@ -41,7 +41,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Navbar></Navbar>
-      <StyledContainer className="row">
+      <StyledContainer>
         <StyledPostsContainer>
           <Pagination/>
           <PostList />
