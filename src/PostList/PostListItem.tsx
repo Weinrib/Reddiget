@@ -25,7 +25,7 @@ const StyledDiv = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    ${({postWasRead}) => postWasRead && css`
+    ${({ postWasRead }) => postWasRead && css`
         border-color: #ff450042;
     `}
 
@@ -95,7 +95,7 @@ const StyledTitleLabel = styled.label`
     cursor: pointer;
     font-size: 17px;
     letter-spacing: 0.5px;
-    ${({postWasRead}) => postWasRead && css`
+    ${({ postWasRead }) => postWasRead && css`
         color: lightgray;
     `}
 `;
@@ -109,14 +109,21 @@ const PostListItem = ({ id, title, author, created_utc, url, thumbnail, num_comm
         e.stopPropagation();
     };
 
+    const onClickThumbOpenOnNewTab = (e: SyntheticEvent, url: string): void => {
+        if (!url) return;
+
+        window.open(url, '_blank');
+        e.stopPropagation();
+    };
+
     return (
         <StyledDiv postWasRead={postWasRead} onClick={() => setPostWasRead(true)}>
             <StyledCardHeader>
                 <StyledDismissPostSpan onClick={(e) => onDismiss(e, id)}>&#10005;</StyledDismissPostSpan>
             </StyledCardHeader>
             <StyledPostContent>
-                <StyledImageContainer>
-                    <img src={thumbnail} width="100%" height="100%"/>
+                <StyledImageContainer onClick={(e) => onClickThumbOpenOnNewTab(e, url)}>
+                    <img src={thumbnail} width="100%" height="100%" />
                 </StyledImageContainer>
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
