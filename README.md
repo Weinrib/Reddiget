@@ -20,10 +20,12 @@ UI Decisions:
 * [react](https://reactjs.org/)
 * [react-spring](https://www.react-spring.io/). Used only for complex animations
 * [react-redux](https://react-redux.js.org/)
+* [redux-saga](https://redux-saga.js.org/). As a middleware
 * [Moment](https://momentjs.com/). Uses to transform dates to a human-readable format
 * [styled-components](https://styled-components.com/). Used to style several components
 * [jest](https://jestjs.io/). Testing framework
 * [react-testing-library](https://github.com/testing-library/react-testing-library). A lightweight testing library
+* [axios](https://github.com/axios/axios). To Handle API calls
 
 ### Deployed proyect
 * https://weinrib.github.io/reddiget/
