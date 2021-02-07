@@ -1,13 +1,11 @@
 import React from 'react';
-import './App.css';
-import styled, { css } from 'styled-components';
-import PostList from './PostList/PostList';
-import Navbar from './Layout/Navbar';
 import { animated, useTransition, UseTransitionResult } from 'react-spring';
-import PostDetail from './PostDetail/PostDetail';
+import styled, { css } from 'styled-components';
+import './App.css';
+import Navbar from './Layout/Navbar';
 import Pagination from './Layout/Pagination';
-import { Provider } from 'react-redux';
-import { store } from './Store/store';
+import PostDetail from './PostDetail/PostDetail';
+import PostList from './PostList/PostList';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -51,7 +49,6 @@ const App = () => {
   });
 
   return (
-    <Provider store={store}>
       <React.Fragment>
         <Navbar></Navbar>
         <StyledContainer>
@@ -62,7 +59,6 @@ const App = () => {
           {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
         </StyledContainer>
       </React.Fragment>
-    </Provider>
   );
 };
 
