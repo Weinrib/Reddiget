@@ -24,3 +24,6 @@ UI Decisions:
 * [styled-components](https://styled-components.com/). Used to style several components
 * [jest](https://jestjs.io/). Testing framework
 * [react-testing-library](https://github.com/testing-library/react-testing-library). A lightweight testing library
+
+### Deployed proyect
+* https://weinrib.github.io/reddiget/
