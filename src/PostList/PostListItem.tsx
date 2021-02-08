@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 import { Post } from '../types';
+import DefaultImage from '../resources/placeholder.jpg';
+import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER, IMAGE_IS_NSFW } from '../Store/PostList/types';
 
 interface PostListItemProperties extends Partial<Post> {
     
@@ -18,7 +20,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    
     ${({ postWasRead }) => postWasRead && css`
         border-color: #ff450042;
     `}
@@ -65,6 +67,8 @@ const StyledImageContainer = styled.div`
 
 const StyledPostContent = styled.div`
     display: flex;
+    flex-grow: 1;    
+
 
     @media only screen and (max-width: 500px) {
         flex-wrap: wrap;
@@ -122,6 +126,14 @@ const PostListItem = (
         e.stopPropagation();
     };
 
+    const getThumbnail = (thumb: string | undefined) => {
+        if(!thumb) return DefaultImage;
+
+        if(IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER.includes(thumb)) return DefaultImage;
+
+        return thumb;
+    };
+
     return (
         <StyledDiv postWasRead={postWasRead} onClick={() => setPostWasRead(true)}>
             <StyledCardHeader>
@@ -129,7 +141,7 @@ const PostListItem = (
             </StyledCardHeader>
             <StyledPostContent>
                 <StyledImageContainer onClick={(e) => onClickThumbOpenOnNewTab(e, url)}>
-                    <img src={thumbnail} width="100%" height="100%" />
+                    <img src={getThumbnail(thumbnail)} width="100%" height="100%" />
                 </StyledImageContainer>
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
