@@ -35,3 +35,4 @@ At first, I tried to stay away as much as possible from external libraries, that
 * Should have used a UI library to handle flexbox instead of implementing it on my own. It took too much time
 * The same could be said about styling. I do like how the final model looks like but it can certainly be improved
 * Pagination certainly can be improved. My current code does not take into account that a post position can change when upvoted enough times. I couldn't find a solution around this one
+* I would have liked to add more test cases, mostly for the redux store and sagas since the components are quite simple
