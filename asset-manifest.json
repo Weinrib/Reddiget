@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/reddiget/static/css/main.41f706d7.chunk.css",
-    "main.js": "/reddiget/static/js/main.3d8412c5.chunk.js",
-    "main.js.map": "/reddiget/static/js/main.3d8412c5.chunk.js.map",
+    "main.js": "/reddiget/static/js/main.ba06417d.chunk.js",
+    "main.js.map": "/reddiget/static/js/main.ba06417d.chunk.js.map",
     "runtime-main.js": "/reddiget/static/js/runtime-main.f22025f9.js",
     "runtime-main.js.map": "/reddiget/static/js/runtime-main.f22025f9.js.map",
-    "static/js/2.f6f9fd95.chunk.js": "/reddiget/static/js/2.f6f9fd95.chunk.js",
-    "static/js/2.f6f9fd95.chunk.js.map": "/reddiget/static/js/2.f6f9fd95.chunk.js.map",
+    "static/js/2.a469400e.chunk.js": "/reddiget/static/js/2.a469400e.chunk.js",
+    "static/js/2.a469400e.chunk.js.map": "/reddiget/static/js/2.a469400e.chunk.js.map",
     "static/js/3.e55c8314.chunk.js": "/reddiget/static/js/3.e55c8314.chunk.js",
     "static/js/3.e55c8314.chunk.js.map": "/reddiget/static/js/3.e55c8314.chunk.js.map",
     "index.html": "/reddiget/index.html",
     "static/css/main.41f706d7.chunk.css.map": "/reddiget/static/css/main.41f706d7.chunk.css.map",
-    "static/js/2.f6f9fd95.chunk.js.LICENSE.txt": "/reddiget/static/js/2.f6f9fd95.chunk.js.LICENSE.txt",
+    "static/js/2.a469400e.chunk.js.LICENSE.txt": "/reddiget/static/js/2.a469400e.chunk.js.LICENSE.txt",
     "static/media/reddit_icon_svg.01b2014d.svg": "/reddiget/static/media/reddit_icon_svg.01b2014d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f22025f9.js",
-    "static/js/2.f6f9fd95.chunk.js",
+    "static/js/2.a469400e.chunk.js",
     "static/css/main.41f706d7.chunk.css",
-    "static/js/main.3d8412c5.chunk.js"
+    "static/js/main.ba06417d.chunk.js"
   ]
 }
