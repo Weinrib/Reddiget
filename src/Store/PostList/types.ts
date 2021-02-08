@@ -25,6 +25,7 @@ export interface PostListState {
     loading: boolean;
     selectedPost: Post | null;
     content: Page<Post>;
+    error: string | null;
 };
 
 export interface FetchPostListAction extends Action {
@@ -42,7 +43,7 @@ export interface FetchPostListSuccessAction extends Action {
 
 export interface FetchPostListErrorAction extends Action {
     type: typeof FETCH_POST_LIST_ERROR;
-    payload: null;
+    payload: string;
 };
 
 export interface SelectPostItemAction extends Action {

@@ -4,6 +4,7 @@ import { DISMISS_POST_ITEM, DISMISS_POST_LIST, DISMISS_SELECTED_POST, FETCH_POST
 const initialState: PostListState = {
     loading: true,
     selectedPost: null,
+    error: null,
     content: {
         data: [],
         before: null,
@@ -30,6 +31,7 @@ export default (state: PostListState = initialState, action) => {
         case FETCH_POST_LIST:
             return {
                 loading: true,
+                error: null,
                 selectedPost: null,
                 content: {
                     ...state.content,
@@ -51,7 +53,8 @@ export default (state: PostListState = initialState, action) => {
         case FETCH_POST_LIST_ERROR:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                error: response
             }
         case SELECT_POST_ITEM:
             return {

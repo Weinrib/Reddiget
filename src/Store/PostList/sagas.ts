@@ -12,13 +12,13 @@ function* watchDismissPostList() {
 };
 
 function* fetchPostListSaga(props: any) {
-    try {        
+    try {
         debugger;
         const {pageBefore, pageAfter} = props.payload;
         const result = yield call(fetchPostList, pageBefore, pageAfter);
         yield put(fetchPostListSuccess(result));
     } catch (error) {
-        yield put(fetchPostListError())
+        yield put(fetchPostListError(error.message))
     }
 };
 

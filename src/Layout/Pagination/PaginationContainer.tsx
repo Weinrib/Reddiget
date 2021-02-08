@@ -7,7 +7,8 @@ const mapStatetoProps = (state: ApplicationState) => ({
     pageBefore: state.posts.content.before as any,
     pageAfter: state.posts.content.after as any,
     firstAfterPage: state.posts.content.firstAfterPage as any,
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    errorOnFetch: Boolean(state.posts.error)
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,7 +6,8 @@ import PostList from "./PostList";
 
 const mapStatetoProps = (state: ApplicationState) => ({
     postList: state.posts.content.data,
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    error: state.posts.error
 });
 
 const mapDispatchToProps = (dispatch) => ({

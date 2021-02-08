@@ -17,10 +17,10 @@ export const fetchPostListSuccess = (data: any): FetchPostListSuccessAction => {
     };
 };
 
-export const fetchPostListError = (): FetchPostListErrorAction => {
+export const fetchPostListError = (message: string): FetchPostListErrorAction => {
     return {
         type: FETCH_POST_LIST_ERROR,
-        payload: null
+        payload: message
     };
 };
 

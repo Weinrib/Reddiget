@@ -47,19 +47,22 @@ interface PaginationProperties {
     getNextPage: (nextPage: string) => any;
     dismissAllPosts: (nextPage: string) => any;
     loading: boolean;
+    errorOnFetch: boolean;
 }
 
-const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage, dismissAllPosts}: PaginationProperties) => {
+const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage, dismissAllPosts, errorOnFetch}: PaginationProperties) => {
+
+    const isLoading = loading || errorOnFetch;
     return (
         <StyledContainer>
             <Button
-                loading={!loading || firstAfterPage === pageAfter}
-                onClick={() => !loading && firstAfterPage !== pageAfter && getPreviousPage(pageBefore)}
+                loading={isLoading || firstAfterPage === pageAfter}
+                onClick={() => !loading && !errorOnFetch && firstAfterPage !== pageAfter && getPreviousPage(pageBefore)}
             >
                 &laquo; Previous
             </Button>
-            <Button loading={loading} onClick={() => !loading && pageAfter && dismissAllPosts(pageAfter)}>Dismiss all &#10005;</Button>
-            <Button loading={loading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</Button>
+            <Button loading={isLoading} onClick={() => !loading && pageAfter && dismissAllPosts(pageAfter)}>Dismiss all &#10005;</Button>
+            <Button loading={isLoading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</Button>
         </StyledContainer>
     )
 };

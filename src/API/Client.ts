@@ -19,8 +19,9 @@ export const fetchPostList = (before: string | null, after: string | null) => {
     })
     .then((response: any) => {
         return response?.data?.data;
-    }).catch((error: any) => {
-        debugger;
-        return null;
+    }).catch(error => {
+        throw {
+            message: 'Error while fetching the posts, please try again later.'
+        }
     });
 };
