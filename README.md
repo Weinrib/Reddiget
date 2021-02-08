@@ -29,3 +29,8 @@ UI Decisions:
 
 ### Deployed proyect
 * https://weinrib.github.io/reddiget/
+
+### Bad decisions made / What to improve
+At first, I tried to stay away as much as possible from external libraries, that brought at least 2 consequences
+* Should have used a UI library to handle flexbox instead of implementing it on my own. It took too much time
+* The same could be said about styling. I do like how the final model looks like but it can certainly be improved
