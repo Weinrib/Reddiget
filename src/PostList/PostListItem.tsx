@@ -4,10 +4,11 @@ import Moment from 'react-moment';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 import { Post } from '../types';
 import DefaultImage from '../resources/placeholder.jpg';
-import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER, IMAGE_IS_NSFW } from '../Store/PostList/types';
+import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER } from '../Store/PostList/types';
 
-interface PostListItemProperties extends Partial<Post> {
-    
+interface PostListItemProperties {
+    post: Partial<Post>;
+    selectPost: (post: Partial<Post>) => any;
 }
 
 const StyledDiv = styled.div`
@@ -98,17 +99,9 @@ const StyledTitleLabel = styled.label`
     `}
 `;
 
-const PostListItem = (
-    {
-        id,
-        title,
-        author,
-        created_utc,
-        url,
-        thumbnail,
-        num_comments,
-        is_video
-    }: PostListItemProperties) => {
+const PostListItem = ({ post, selectPost }: PostListItemProperties) => {
+
+    const { id, thumbnail, url, title, author, created_utc, num_comments} = post;
 
     const [postWasRead, setPostWasRead] = React.useState(false);
 
@@ -134,8 +127,13 @@ const PostListItem = (
         return thumb;
     };
 
+    const togglePostDetail = (post: Partial<Post>) => {
+        setPostWasRead(true);
+        selectPost(post);
+    };
+
     return (
-        <StyledDiv postWasRead={postWasRead} onClick={() => setPostWasRead(true)}>
+        <StyledDiv postWasRead={postWasRead} onClick={() => togglePostDetail(post)}>
             <StyledCardHeader>
                 <StyledDismissPostSpan onClick={(e) => onDismiss(e, id)}>&#10005;</StyledDismissPostSpan>
             </StyledCardHeader>
@@ -146,7 +144,7 @@ const PostListItem = (
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
                     <StyledAuthorHeader>
-                        <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment fromNow>{created_utc}</Moment></span>
+                        <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{created_utc}</Moment></span>
                     </StyledAuthorHeader>
                     <StyledComments>
                         <span>{`${num_comments} comments`}</span>

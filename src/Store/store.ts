@@ -1,7 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { Post } from "../types";
 import { PostListState } from './PostList/types';
 import postListReducer from './PostList/reducer';
 import { fetchListWatchers } from './PostList/sagas';
@@ -9,8 +8,7 @@ import { all } from 'redux-saga/effects';
 
 
 export interface ApplicationState {
-    posts: PostListState;
-    selectedPost: Post;
+    posts: PostListState
 };
 
 export const reducers = combineReducers({

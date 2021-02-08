@@ -1,7 +1,9 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { ReactReduxContext } from 'react-redux';
 import styled from 'styled-components';
 import { FLEX_CENTER_STYLE, StyledAuthorHeader, StyledAuthorSpan, StyledCenteredDiv, StyledComments } from '../Layout/common';
+import { Post } from '../types';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -67,22 +69,29 @@ const FLEX_WITH_MARGIN_STYLE = {
     ...FLEX_CENTER_STYLE,
     marginTop: '10px',
     marginBottom: '10px'
-}
+};
 
-const PostDetail = () => {
+const PostDetail = (post: Partial<Post>) => {
+
+    const { title, author, created_utc, num_comments} = post;
+
+    React.useEffect(() => {
+        console.log(post);
+    }, [post])
+
     return (
         <StyledContainer>
             <StyledTitleContainer>
-                <h3>My son always texts to, and wanted to share.</h3>
+                <h3>{title}</h3>
             </StyledTitleContainer>
             <StyledImageContainer>
                 <img src="https://i.redd.it/ll5vz9bigwf61.gif" />
             </StyledImageContainer>
             <StyledAuthorHeader style={FLEX_WITH_MARGIN_STYLE}>
-                <span>{`Sent by `}<StyledAuthorSpan>Jose</StyledAuthorSpan>&nbsp;<Moment fromNow>{1231313111}</Moment></span>
+                <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{created_utc}</Moment></span>
             </StyledAuthorHeader>
             <StyledComments style={FLEX_WITH_MARGIN_STYLE}>
-                <span>12350 comments</span>
+                <span>{`${num_comments} comments`}</span>
             </StyledComments>
         </StyledContainer>
     );

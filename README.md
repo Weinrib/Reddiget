@@ -26,6 +26,7 @@ UI Decisions:
 * [jest](https://jestjs.io/). Testing framework
 * [react-testing-library](https://github.com/testing-library/react-testing-library). A lightweight testing library
 * [axios](https://github.com/axios/axios). To Handle API calls
+* [react-spinners](https://github.com/davidhu2000/react-spinners). To Handle loading spinners
 
 ### Deployed proyect
 * https://weinrib.github.io/reddiget/
