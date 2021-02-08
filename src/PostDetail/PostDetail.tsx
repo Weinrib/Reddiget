@@ -103,14 +103,13 @@ const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
         <StyledContainer>
             <StyledTitleContainer>
                 <h3>{post?.title}</h3>
-            dafuq mate                                
             </StyledTitleContainer>
             {   !post?.is_self
                 && <StyledImageContainer>
-                    {!post?.is_video && !imageIsGifv && <img src={post?.url} />}
-                    {post?.is_video && <video autoPlay={true} src={post?.media?.reddit_video.fallback_url} />}
+                    {!post?.is_video && !imageIsGifv && <img src={post?.url} width="100%"/>}
+                    {post?.is_video && <video autoPlay={true} src={post?.media?.reddit_video.fallback_url} width="100%"/>}
                     {imageIsGifv &&
-                        <video preload="auto" autoPlay loop>
+                        <video preload="auto" autoPlay loop width="100%">
                             <source src={REPLACE_GIFV_WITH_MP4(post?.url)} type="video/mp4"></source>
                         </video>
                     }
