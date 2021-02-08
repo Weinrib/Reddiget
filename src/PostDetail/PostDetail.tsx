@@ -95,7 +95,7 @@ const FLEX_WITH_MARGIN_STYLE = {
 };
 
 interface PostDetailProperties {
-    post: any;
+    post: Post;
     dismissPost: () => any;
 };
 
