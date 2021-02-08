@@ -9,7 +9,6 @@
 UI Decisions: 
 * Every device above 1000px of width will use a split layout. Posts on the left and the detail on the right
 * Every device below 1000px of width will use a second route when clicking on a post, taking the user to the post detail. From the detail the user can go back to the list
-* Dismissing a post cannot be undone
 * Dismissing all posts will automatically fetch another page
 * To distinguish an already visited post instead of a badge I chose to change the border and font color of a post item
 * Images will not be scaled
