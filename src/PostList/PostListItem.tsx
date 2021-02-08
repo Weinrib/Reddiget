@@ -94,6 +94,12 @@ const StyledTitleLabel = styled.label`
     cursor: pointer;
     font-size: 17px;
     letter-spacing: 0.5px;
+    flex-grow: 1;
+
+    @media only screen and (max-width: 500px) {
+       text-align:center;
+    }
+
     ${({ postWasRead }) => postWasRead && css`
         color: lightgray;
     `}
