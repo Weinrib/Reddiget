@@ -26,7 +26,7 @@ const StyledH1WithLeftMargin = styled.h1`
 const Navbar = () => {
     return (
         <StyledPageHeader>
-            <StyledRedditLogo src={RedditLogo}></StyledRedditLogo>
+            <StyledRedditLogo data-testid="navbar-logo" src={RedditLogo}></StyledRedditLogo>
             <StyledH1WithLeftMargin>Reddiget</StyledH1WithLeftMargin>            
         </StyledPageHeader>
     )

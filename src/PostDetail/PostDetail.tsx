@@ -131,7 +131,7 @@ const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
             {
                 !DEVICE_APPLIES_FOR_SPLIT_LAYOUT && 
                 <StyledGoBackButtonContainer>
-                    <StyledButton onClick={() => dismissPost()}>&laquo; Go back</StyledButton>
+                    <StyledButton data-testid="goBackButton" onClick={() => dismissPost()}>&laquo; Go back</StyledButton>
                 </StyledGoBackButtonContainer>
             }
         </StyledContainer>

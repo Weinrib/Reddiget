@@ -137,7 +137,7 @@ const PostListItem = ({ post, selectPost, dismissPost }: PostListItemProperties)
             </StyledCardHeader>
             <StyledPostContent>
                 <StyledImageContainer onClick={(e) => onClickThumbOpenOnNewTab(e, url)}>
-                    <img src={GET_THUMBNAIL(thumbnail)} width="100%" height="100%" />
+                    <img data-testid="postItemImage" src={GET_THUMBNAIL(thumbnail)} width="100%" height="100%" />
                 </StyledImageContainer>
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
