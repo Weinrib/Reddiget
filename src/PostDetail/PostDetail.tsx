@@ -46,25 +46,25 @@ const StyledImageContainer = styled.div`
     max-height: 400px;
 
 
-    @media only screen and (max-width: 1000px) {
+    @media screen and (max-width: 1000px) {
         max-width: 200px;
         max-height: 300px;
     }
 
-    @media only screen and (max-width: 700px) {
+    @media screen and (max-width: 700px) {
         max-width: 250px;
         max-height: 300px;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) {
         max-height: 250px;
     }
 
-    @media only screen and (max-width: 500px) {
+    @media screen and (max-width: 500px) {
         max-height: 225px;
     }
 
-    @media only screen and (max-width: 400px) {
+    @media screen and (max-width: 400px) {
         max-height: 200px;
     }
 `;
