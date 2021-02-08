@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-const REDDIT_FETCH_API = 'https://www.reddit.com/top/.json?limit=50'
+const REDDIT_FETCH_API = 'https://www.reddit.com/top/.json?limit=50&sort=created'
 
 export const fetchPostList = (before: string | null, after: string | null) => {
     let URI = REDDIT_FETCH_API;
@@ -14,8 +14,7 @@ export const fetchPostList = (before: string | null, after: string | null) => {
 
     return axios.get(URI, {
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp'
+            'Content-Type': 'application/json'
         }
     })
     .then((response: any) => {
