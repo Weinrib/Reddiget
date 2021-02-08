@@ -47,6 +47,7 @@ export interface SelectPostItemAction extends Action {
 
 export interface DismissPostItemAction extends Action {
     type: typeof DISMISS_POST_ITEM
+    payload: string;
 };
 
 export type PostListAction =  FetchPostListAction | FetchPostListSuccessAction | FetchPostListErrorAction | SelectPostItemAction | DismissPostItemAction;

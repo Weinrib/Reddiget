@@ -6,4 +6,4 @@ const mapStatetoProps = (state: ApplicationState) => ({
     isPostSelected: Boolean(state.posts.selectedPost)
 });
 
-export default connect(mapStatetoProps)(App);
+export default connect(mapStatetoProps, {})(App);

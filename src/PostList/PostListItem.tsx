@@ -1,14 +1,14 @@
 import React, { SyntheticEvent } from 'react';
-import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
+import styled, { css } from 'styled-components';
+import { GET_THUMBNAIL } from '../common';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 import { Post } from '../types';
-import { GET_THUMBNAIL } from '../common';
-import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER_ON_LISTING } from '../Store/PostList/types';
 
 interface PostListItemProperties {
     post: Partial<Post>;
     selectPost: (post: Partial<Post>) => any;
+    dismissPost: (postId: string) => any;
 }
 
 const StyledDiv = styled.div`
@@ -99,7 +99,7 @@ const StyledTitleLabel = styled.label`
     `}
 `;
 
-const PostListItem = ({ post, selectPost }: PostListItemProperties) => {
+const PostListItem = ({ post, selectPost, dismissPost }: PostListItemProperties) => {
 
     const { id, thumbnail, url, title, author, created_utc, num_comments} = post;
 
@@ -108,7 +108,7 @@ const PostListItem = ({ post, selectPost }: PostListItemProperties) => {
     const onDismiss = (e: SyntheticEvent, id?: string) => {
         if(!id) return;
 
-       // onRemove(id);
+        dismissPost(id);
         e.stopPropagation();
     };
 
