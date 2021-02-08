@@ -13,7 +13,6 @@ function* watchDismissPostList() {
 
 function* fetchPostListSaga(props: any) {
     try {
-        debugger;
         const {pageBefore, pageAfter} = props.payload;
         const result = yield call(fetchPostList, pageBefore, pageAfter);
         yield put(fetchPostListSuccess(result));
