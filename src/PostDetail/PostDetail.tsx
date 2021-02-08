@@ -42,9 +42,13 @@ const StyledImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-self:center;
-    max-width: 300px;
-    max-height: 400px;
+    max-width: 400px;
+    max-height: 500px;
 
+    @media screen and (max-width: 1200px) {
+        max-width: 300px;
+        max-height: 320px;
+    }
 
     @media screen and (max-width: 1000px) {
         max-width: 200px;
@@ -91,24 +95,24 @@ const FLEX_WITH_MARGIN_STYLE = {
 };
 
 interface PostDetailProperties {
-    post: Partial<Post>;
+    post: any;
     dismissPost: () => any;
-}
+};
 
 const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
 
     const { url, author, is_self, is_video, title, media, created_utc, num_comments, selftext } = post;
 
-    const imageIsGifv = CHECK_IF_GIFV(post?.url);
+    const imageIsGifv = CHECK_IF_GIFV(url);
 
     return (
         <StyledContainer>
             <StyledTitleContainer>
                 <h3>{title}</h3>
             </StyledTitleContainer>
-            {   is_self
+            {   !is_self
                 && <StyledImageContainer>
-                    {is_video && !imageIsGifv && <img src={url} width="100%" />}
+                    {!is_video && !imageIsGifv && <img src={url} width="100%"/>}
                     {is_video && <video autoPlay={true} src={media?.reddit_video.fallback_url} width="100%" />}
                     {imageIsGifv &&
                         <video preload="auto" autoPlay loop width="100%">

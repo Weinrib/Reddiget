@@ -23,7 +23,7 @@ export const MP4_EXTENSION = '.mp4';
 
 export interface PostListState {
     loading: boolean;
-    selectedPost: Partial<Post> | null;
+    selectedPost: Post | null;
     content: Page<Post>;
 };
 
