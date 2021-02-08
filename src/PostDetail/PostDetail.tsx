@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { ReactReduxContext } from 'react-redux';
 import styled from 'styled-components';
+import { CHECK_IF_GIFV, REPLACE_GIFV_WITH_MP4 } from '../common';
 import { FLEX_CENTER_STYLE, StyledAuthorHeader, StyledAuthorSpan, StyledCenteredDiv, StyledComments } from '../Layout/common';
 import { Post } from '../types';
 
@@ -42,6 +42,14 @@ const StyledImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-self:center;
+    max-width: 300px;
+    max-height: 400px;
+
+
+    @media only screen and (max-width: 1000px) {
+        max-width: 200px;
+        max-height: 300px;
+    }
 
     @media only screen and (max-width: 700px) {
         max-width: 250px;
@@ -73,20 +81,31 @@ const FLEX_WITH_MARGIN_STYLE = {
 
 const PostDetail = (post: Partial<Post>) => {
 
-    const { title, author, created_utc, num_comments} = post;
+    const { title, author, created_utc, num_comments, selftext, is_video, is_self, url, media } = post;
 
     React.useEffect(() => {
         console.log(post);
     }, [post])
+
+    const imageIsGifv = CHECK_IF_GIFV(url);
 
     return (
         <StyledContainer>
             <StyledTitleContainer>
                 <h3>{title}</h3>
             </StyledTitleContainer>
-            <StyledImageContainer>
-                <img src="https://i.redd.it/ll5vz9bigwf61.gif" />
-            </StyledImageContainer>
+            {   !is_self
+                && <StyledImageContainer>
+                    {!is_video && !imageIsGifv && <img src={url} />}
+                    {is_video && <video autoPlay={true} src={media?.reddit_video.fallback_url} />}
+                    {imageIsGifv && 
+                    <video preload="auto" autoPlay loop>
+                        <source src={REPLACE_GIFV_WITH_MP4(url)} type="video/mp4"></source>    
+                    </video>
+                    }
+                </StyledImageContainer>
+            }
+            <div>{selftext}</div>
             <StyledAuthorHeader style={FLEX_WITH_MARGIN_STYLE}>
                 <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{created_utc}</Moment></span>
             </StyledAuthorHeader>

@@ -12,7 +12,12 @@ export const IMAGE_IS_NSFW = 'nsfw';
 export const IMAGE_DEF = 'default';
 export const IMAGE_SELF = 'self';
 
-export const IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER = [IMAGE_IS_NSFW, IMAGE_DEF, IMAGE_SELF];
+export const IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER_ON_LISTING = [IMAGE_IS_NSFW, IMAGE_DEF, IMAGE_SELF];
+
+export const IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER_ON_DETAIL = [IMAGE_DEF, IMAGE_SELF];
+
+export const GIFV_EXTENSION = '.gifv';
+export const MP4_EXTENSION = '.mp4';
 
 export interface PostListState {
     loading: boolean;

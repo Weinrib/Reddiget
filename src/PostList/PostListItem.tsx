@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import Moment from 'react-moment';
 import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/common';
 import { Post } from '../types';
-import DefaultImage from '../resources/placeholder.jpg';
-import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER } from '../Store/PostList/types';
+import { GET_THUMBNAIL } from '../common';
+import { IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER_ON_LISTING } from '../Store/PostList/types';
 
 interface PostListItemProperties {
     post: Partial<Post>;
@@ -119,14 +119,6 @@ const PostListItem = ({ post, selectPost }: PostListItemProperties) => {
         e.stopPropagation();
     };
 
-    const getThumbnail = (thumb: string | undefined) => {
-        if(!thumb) return DefaultImage;
-
-        if(IMAGES_TO_BE_REPLACED_WITH_PLACEHOLDER.includes(thumb)) return DefaultImage;
-
-        return thumb;
-    };
-
     const togglePostDetail = (post: Partial<Post>) => {
         setPostWasRead(true);
         selectPost(post);
@@ -139,7 +131,7 @@ const PostListItem = ({ post, selectPost }: PostListItemProperties) => {
             </StyledCardHeader>
             <StyledPostContent>
                 <StyledImageContainer onClick={(e) => onClickThumbOpenOnNewTab(e, url)}>
-                    <img src={getThumbnail(thumbnail)} width="100%" height="100%" />
+                    <img src={GET_THUMBNAIL(thumbnail)} width="100%" height="100%" />
                 </StyledImageContainer>
                 <StyledPostInfo>
                     <StyledTitleLabel postWasRead={postWasRead}>{title}</StyledTitleLabel>
