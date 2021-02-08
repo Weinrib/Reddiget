@@ -8,6 +8,7 @@ export const FETCH_POST_LIST_ERROR = "FETCH_POST_LIST_ERROR";
 
 export const SELECT_POST_ITEM = "SELECT_POST_ITEM";
 export const DISMISS_POST_ITEM = "DISMISS_POST_ITEM";
+export const DISMISS_SELECTED_POST = "DISMISS_SELECTED_POST";
 
 export const IMAGE_IS_NSFW = 'nsfw';
 export const IMAGE_DEF = 'default';
@@ -62,10 +63,15 @@ export interface DismissPostListAction extends Action {
     };
 };
 
+export interface DismissSelectedPostAction extends Action {
+    type: typeof DISMISS_SELECTED_POST    
+};
+
 export type PostListAction =
     FetchPostListAction
     | FetchPostListSuccessAction
     | FetchPostListErrorAction
     | SelectPostItemAction
     | DismissPostItemAction
-    | DismissPostListAction;
+    | DismissPostListAction
+    | DismissSelectedPostAction;

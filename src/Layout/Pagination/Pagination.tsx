@@ -1,36 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { StyledCenteredDiv } from '../common';
-
-const StyledButton = styled.button`
-    color: white;
-    background-color: orangered;
-    border: none;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin-left: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-    :hover {
-        color: orangered;
-        background-color: white;        
-    }
-
-    @media only screen and (max-width: 450px) {
-        font-size: 12px;
-    }
-
-    ${({loading}) => loading && css`
-        opacity: 0.6;
-        cursor: not-allowed;
-    `}
-`;
+import styled from 'styled-components';
+import { Button, StyledCenteredDiv } from '../common';
 
 const StyledContainer = styled(StyledCenteredDiv)`
     position: sticky;
@@ -82,14 +52,14 @@ interface PaginationProperties {
 const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage, dismissAllPosts}: PaginationProperties) => {
     return (
         <StyledContainer>
-            <StyledButton
+            <Button
                 loading={!loading || firstAfterPage === pageAfter}
                 onClick={() => !loading && firstAfterPage !== pageAfter && getPreviousPage(pageBefore)}
             >
                 &laquo; Previous
-            </StyledButton>
-            <StyledButton loading={loading} onClick={() => !loading && pageAfter && dismissAllPosts(pageAfter)}>Dismiss all &#10005;</StyledButton>
-            <StyledButton loading={loading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</StyledButton>
+            </Button>
+            <Button loading={loading} onClick={() => !loading && pageAfter && dismissAllPosts(pageAfter)}>Dismiss all &#10005;</Button>
+            <Button loading={loading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</Button>
         </StyledContainer>
     )
 };

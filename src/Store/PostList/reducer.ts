@@ -1,5 +1,5 @@
 import { Post } from "../../types";
-import { DISMISS_POST_ITEM, DISMISS_POST_LIST, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, PostListAction, PostListState, SELECT_POST_ITEM } from "./types";
+import { DISMISS_POST_ITEM, DISMISS_POST_LIST, DISMISS_SELECTED_POST, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, PostListAction, PostListState, SELECT_POST_ITEM } from "./types";
 
 const initialState: PostListState = {
     loading: true,
@@ -66,6 +66,11 @@ export default (state: PostListState = initialState, action) => {
                     ...state.content,
                     data: state.content.data.filter((post: Post) => post.id !== response)
                 }
+            }
+        case DISMISS_SELECTED_POST:
+            return {
+                ...state,
+                selectedPost: null
             }
         default:
             return state;

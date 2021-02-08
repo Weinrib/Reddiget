@@ -1,5 +1,5 @@
 import { Post } from "../../types";
-import { DismissPostItemAction, DismissPostListAction, DISMISS_POST_ITEM, DISMISS_POST_LIST, FetchPostListAction, FetchPostListErrorAction, FetchPostListSuccessAction, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, SelectPostItemAction, SELECT_POST_ITEM } from "./types";
+import { DismissPostItemAction, DismissPostListAction, DismissSelectedPostAction, DISMISS_POST_ITEM, DISMISS_POST_LIST, DISMISS_SELECTED_POST, FetchPostListAction, FetchPostListErrorAction, FetchPostListSuccessAction, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, SelectPostItemAction, SELECT_POST_ITEM } from "./types";
 
 export const fetchPostList = (pageBefore: string | null, pageAfter: string | null): FetchPostListAction => {
     return {
@@ -45,5 +45,11 @@ export const dismissPostList = (pageAfter: string): DismissPostListAction => {
             pageBefore: null,
             pageAfter
         }
+    };
+};
+
+export const dismissSelectedPost = (): DismissSelectedPostAction => {
+    return {
+        type: DISMISS_SELECTED_POST
     };
 };

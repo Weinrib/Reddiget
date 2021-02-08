@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import styled from 'styled-components';
 import { CHECK_IF_GIFV, REPLACE_GIFV_WITH_MP4 } from '../common';
-import { FLEX_CENTER_STYLE, StyledAuthorHeader, StyledAuthorSpan, StyledCenteredDiv, StyledComments } from '../Layout/common';
+import { FLEX_CENTER_STYLE, StyledAuthorHeader, StyledAuthorSpan, Button, StyledCenteredDiv, StyledComments } from '../Layout/common';
 import { Post } from '../types';
 
 const StyledContainer = styled.div`
@@ -69,6 +69,16 @@ const StyledImageContainer = styled.div`
     }
 `;
 
+const StyledGoBackButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+`;
+
+const StyledButton = styled(Button)`
+    padding: 10px 30px;
+`;
+
 const StyledTitleContainer = styled(StyledCenteredDiv)`
     text-align: center;
 `;
@@ -79,39 +89,41 @@ const FLEX_WITH_MARGIN_STYLE = {
     marginBottom: '10px'
 };
 
-const PostDetail = (post: Partial<Post>) => {
+interface PostDetailProperties {
+    post: Partial<Post> | null;
+    dismissPost: () => any;
+}
 
-    const { title, author, created_utc, num_comments, selftext, is_video, is_self, url, media } = post;
+const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
 
-    React.useEffect(() => {
-        console.log(post);
-    }, [post])
-
-    const imageIsGifv = CHECK_IF_GIFV(url);
+    const imageIsGifv = CHECK_IF_GIFV(post?.url);
 
     return (
         <StyledContainer>
             <StyledTitleContainer>
-                <h3>{title}</h3>
+                <h3>{post?.title}</h3>
             </StyledTitleContainer>
-            {   !is_self
+            {   !post?.is_self
                 && <StyledImageContainer>
-                    {!is_video && !imageIsGifv && <img src={url} />}
-                    {is_video && <video autoPlay={true} src={media?.reddit_video.fallback_url} />}
-                    {imageIsGifv && 
-                    <video preload="auto" autoPlay loop>
-                        <source src={REPLACE_GIFV_WITH_MP4(url)} type="video/mp4"></source>    
-                    </video>
+                    {!post?.is_video && !imageIsGifv && <img src={post?.url} />}
+                    {post?.is_video && <video autoPlay={true} src={post?.media?.reddit_video.fallback_url} />}
+                    {imageIsGifv &&
+                        <video preload="auto" autoPlay loop>
+                            <source src={REPLACE_GIFV_WITH_MP4(post?.url)} type="video/mp4"></source>
+                        </video>
                     }
                 </StyledImageContainer>
             }
-            <div>{selftext}</div>
+            <div>{post?.selftext}</div>
             <StyledAuthorHeader style={FLEX_WITH_MARGIN_STYLE}>
-                <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{created_utc}</Moment></span>
+                <span>{`Sent by `}<StyledAuthorSpan>{post?.author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{post?.created_utc}</Moment></span>
             </StyledAuthorHeader>
             <StyledComments style={FLEX_WITH_MARGIN_STYLE}>
-                <span>{`${num_comments} comments`}</span>
+                <span>{`${post?.num_comments} comments`}</span>
             </StyledComments>
+            <StyledGoBackButtonContainer>
+                <StyledButton onClick={() => dismissPost()}>&laquo; Go back</StyledButton>
+            </StyledGoBackButtonContainer>
         </StyledContainer>
     );
 }

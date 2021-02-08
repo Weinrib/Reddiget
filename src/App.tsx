@@ -17,6 +17,7 @@ const StyledContainer = styled.div`
 
 const StyledPostsContainer = styled.div`
   flex-basis: 40%;
+  visibility: visible;
   ${({ deviceAppliesForSplitLayout }) => !deviceAppliesForSplitLayout && css`
     flex-basis: 90%;
   `}
@@ -38,9 +39,16 @@ const buildDetailsContainer = (transitions: Array<UseTransitionResult<boolean, P
 
 interface AppProperties {
   isPostSelected: boolean;
-}
+};
 
-const App = ({isPostSelected}: AppProperties) => {
+const MobileListHandler = styled.div`
+  ${({ isPostSelected, deviceAppliesForSplitLayout }) => isPostSelected &&
+    !deviceAppliesForSplitLayout && css`
+    display: none;
+  `}
+`;
+
+const App = ({ isPostSelected }: AppProperties) => {
 
   const deviceAppliesForSplitLayout = window.innerWidth >= 1100;
 
@@ -51,16 +59,19 @@ const App = ({isPostSelected}: AppProperties) => {
   });
 
   return (
-      <React.Fragment>
-        <Navbar></Navbar>
-        <StyledContainer>
-          <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
-            <PaginationContainer/>
+    <React.Fragment>
+      <Navbar></Navbar>
+      <StyledContainer>
+        <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
+          <MobileListHandler deviceAppliesForSplitLayout={deviceAppliesForSplitLayout} isPostSelected={isPostSelected}>
+            <PaginationContainer />
             <PostListContainer />
-          </StyledPostsContainer>
-          {deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}
-        </StyledContainer>
-      </React.Fragment>
+          </MobileListHandler>
+          {!deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}
+        </StyledPostsContainer>
+        {deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}
+      </StyledContainer>
+    </React.Fragment>
   );
 };
 
