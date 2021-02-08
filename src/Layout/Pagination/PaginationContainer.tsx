@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchPostList } from '../../Store/PostList/actions';
+import { dismissPostList, fetchPostList } from '../../Store/PostList/actions';
 import { ApplicationState } from '../../Store/store';
 import Pagination from './Pagination';
 
@@ -12,7 +12,8 @@ const mapStatetoProps = (state: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getPreviousPage: (previousPage: string) => dispatch(fetchPostList(previousPage, null)),
-    getNextPage: (nextPage: string) => dispatch(fetchPostList(null, nextPage))
+    getNextPage: (nextPage: string) => dispatch(fetchPostList(null, nextPage)),
+    dismissAllPosts: (nextPage: string) => dispatch(dismissPostList(nextPage))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Pagination);

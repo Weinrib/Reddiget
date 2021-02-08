@@ -2,6 +2,7 @@ import { Action } from 'redux';
 import { Page, Post } from '../../types';
 
 export const FETCH_POST_LIST = "FETCH_POST_LIST";
+export const DISMISS_POST_LIST = "DISMISS_POST_LIST";
 export const FETCH_POST_LIST_SUCCESS = "FETCH_POST_LIST_SUCCESS";
 export const FETCH_POST_LIST_ERROR = "FETCH_POST_LIST_ERROR";
 
@@ -53,9 +54,18 @@ export interface DismissPostItemAction extends Action {
     payload: string;
 };
 
+export interface DismissPostListAction extends Action {
+    type: typeof DISMISS_POST_LIST
+    payload: {
+        pageBefore: null,
+        pageAfter: string
+    };
+};
+
 export type PostListAction =
     FetchPostListAction
     | FetchPostListSuccessAction
     | FetchPostListErrorAction
     | SelectPostItemAction
-    | DismissPostItemAction;
+    | DismissPostItemAction
+    | DismissPostListAction;

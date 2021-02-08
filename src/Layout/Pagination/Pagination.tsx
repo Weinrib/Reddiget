@@ -75,10 +75,11 @@ interface PaginationProperties {
     firstAfterPage: string,
     getPreviousPage: (previousPage: string) => any;
     getNextPage: (nextPage: string) => any;
+    dismissAllPosts: (nextPage: string) => any;
     loading: boolean;
 }
 
-const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage}: PaginationProperties) => {
+const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage, dismissAllPosts}: PaginationProperties) => {
     return (
         <StyledContainer>
             <StyledButton
@@ -87,7 +88,7 @@ const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loadin
             >
                 &laquo; Previous
             </StyledButton>
-            <StyledButton loading={loading}>Dismiss all &#10005;</StyledButton>
+            <StyledButton loading={loading} onClick={() => !loading && pageAfter && dismissAllPosts(pageAfter)}>Dismiss all &#10005;</StyledButton>
             <StyledButton loading={loading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</StyledButton>
         </StyledContainer>
     )

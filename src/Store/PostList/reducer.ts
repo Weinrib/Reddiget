@@ -1,5 +1,5 @@
 import { Post } from "../../types";
-import { DISMISS_POST_ITEM, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, PostListAction, PostListState, SELECT_POST_ITEM } from "./types";
+import { DISMISS_POST_ITEM, DISMISS_POST_LIST, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, PostListAction, PostListState, SELECT_POST_ITEM } from "./types";
 
 const initialState: PostListState = {
     loading: true,
@@ -16,6 +16,17 @@ const initialState: PostListState = {
 export default (state: PostListState = initialState, action) => {
     const response = action.payload;
     switch (action.type) {
+        case DISMISS_POST_LIST:
+            return {
+                loading: true,
+                selectedPost: null,
+                content: {
+                    after: state.content.after,
+                    firstAfterPage: null,
+                    before: null,
+                    data: []
+                }
+            };
         case FETCH_POST_LIST:
             return {
                 loading: true,
@@ -32,7 +43,7 @@ export default (state: PostListState = initialState, action) => {
                     ...state.content,
                     data: response?.children.map((post) => post.data),
                     firstAfterPage: state.content.firstAfterPage === null ? response.children.slice(-1)[0].data.name : state.content.firstAfterPage,
-                    before: state.content.firstAfterPage === null ? null : response.children[0].data.name, 
+                    before: state.content.firstAfterPage === null ? null : response.children[0].data.name,
                     after: response.children.slice(-1)[0].data.name,
                     modhash: response?.modhash
                 }
