@@ -7,9 +7,10 @@ function* watchFetchPostList() {
     yield takeEvery(FETCH_POST_LIST, fetchPostListSaga);
 };
 
-function* fetchPostListSaga() {
-    try {
-        const result = yield call(fetchPostList);
+function* fetchPostListSaga(props: any) {
+    try {        
+        const {pageBefore, pageAfter} = props.payload;
+        const result = yield call(fetchPostList, pageBefore, pageAfter);
         yield put(fetchPostListSuccess(result));
     } catch (error) {
         yield put(fetchPostListError())

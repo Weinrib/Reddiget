@@ -9,7 +9,7 @@
 UI Decisions: 
 * Every device above 1000px of width will use a split layout. Posts on the left and the detail on the right
 * Every device below 1000px of width will use a second route when clicking on a post, taking the user to the post detail. From the detail the user can go back to the list
-* Dismissing all posts will automatically fetch another page
+* Dismissing all posts will automatically fetch the next page
 * To distinguish an already visited post instead of a badge I chose to change the border and font color of a post item
 * Images will not be scaled
 * If a post has a picture (besides thumbnail), clicking on said image will open a new tab with it's content
@@ -27,7 +27,7 @@ UI Decisions:
 * [axios](https://github.com/axios/axios). To Handle API calls
 * [react-spinners](https://github.com/davidhu2000/react-spinners). To Handle loading spinners
 
-### Deployed proyect
+### Proyect demo
 * https://weinrib.github.io/reddiget/
 
 ### Bad decisions made / What to improve

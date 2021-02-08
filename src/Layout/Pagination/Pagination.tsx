@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { StyledCenteredDiv } from './common';
-
+import styled, { css } from 'styled-components';
+import { StyledCenteredDiv } from '../common';
 
 const StyledButton = styled.button`
     color: white;
@@ -14,6 +13,7 @@ const StyledButton = styled.button`
     margin-left: 10px;
     font-weight: bold;
     cursor: pointer;
+    outline: none;
     transition-duration: 0.4s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
@@ -25,6 +25,11 @@ const StyledButton = styled.button`
     @media only screen and (max-width: 450px) {
         font-size: 12px;
     }
+
+    ${({loading}) => loading && css`
+        opacity: 0.6;
+        cursor: not-allowed;
+    `}
 `;
 
 const StyledContainer = styled(StyledCenteredDiv)`
@@ -64,12 +69,26 @@ const StyledContainer = styled(StyledCenteredDiv)`
     }
 `;
 
-const Pagination = () => {
+interface PaginationProperties {
+    pageBefore: string,
+    pageAfter: string,
+    firstAfterPage: string,
+    getPreviousPage: (previousPage: string) => any;
+    getNextPage: (nextPage: string) => any;
+    loading: boolean;
+}
+
+const Pagination = ({pageBefore, pageAfter, getPreviousPage, getNextPage, loading, firstAfterPage}: PaginationProperties) => {
     return (
         <StyledContainer>
-            <StyledButton>&laquo; Previous</StyledButton>
-            <StyledButton>Dismiss all &#10005;</StyledButton>
-            <StyledButton>Next &raquo;</StyledButton>
+            <StyledButton
+                loading={!loading || firstAfterPage === pageAfter}
+                onClick={() => !loading && firstAfterPage !== pageAfter && getPreviousPage(pageBefore)}
+            >
+                &laquo; Previous
+            </StyledButton>
+            <StyledButton loading={loading}>Dismiss all &#10005;</StyledButton>
+            <StyledButton loading={loading} onClick={() => pageAfter && !loading && getNextPage(pageAfter)}>Next &raquo;</StyledButton>
         </StyledContainer>
     )
 };

@@ -27,7 +27,10 @@ export interface PostListState {
 
 export interface FetchPostListAction extends Action {
     type: typeof FETCH_POST_LIST;
-    payload: null;
+    payload: {
+        pageBefore: string | null,
+        pageAfter: string | null
+    } | null;
 };
 
 export interface FetchPostListSuccessAction extends Action {
@@ -50,4 +53,9 @@ export interface DismissPostItemAction extends Action {
     payload: string;
 };
 
-export type PostListAction =  FetchPostListAction | FetchPostListSuccessAction | FetchPostListErrorAction | SelectPostItemAction | DismissPostItemAction;
+export type PostListAction =
+    FetchPostListAction
+    | FetchPostListSuccessAction
+    | FetchPostListErrorAction
+    | SelectPostItemAction
+    | DismissPostItemAction;

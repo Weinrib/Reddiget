@@ -19,7 +19,8 @@ export interface Post {
 
 export interface Page<T> {
     data: Array<T>;
-    before: string;
-    after: string;
+    before: string | null;
+    after: string | null;
     modhash: string;
+    firstAfterPage: string | null;
 }

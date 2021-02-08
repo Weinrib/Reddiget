@@ -3,10 +3,9 @@ import { animated, useTransition, UseTransitionResult } from 'react-spring';
 import styled, { css } from 'styled-components';
 import './App.css';
 import Navbar from './Layout/Navbar';
-import Pagination from './Layout/Pagination';
+import PaginationContainer from './Layout/Pagination/PaginationContainer';
 import PostDetailContainer from './PostDetail/PostDetailContainer';
 import PostListContainer from './PostList/PostListContainer';
-import { Post } from './types';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -56,7 +55,7 @@ const App = ({isPostSelected}: AppProperties) => {
         <Navbar></Navbar>
         <StyledContainer>
           <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
-            <Pagination></Pagination>
+            <PaginationContainer/>
             <PostListContainer />
           </StyledPostsContainer>
           {deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}

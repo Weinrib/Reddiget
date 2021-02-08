@@ -1,9 +1,8 @@
 import React from 'react';
+import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
-import PostListItem from './PostListItem';
-import { useSpring, animated, useTransition } from 'react-spring';
-import { Post } from '../types';
 import { Spinner } from '../Layout/common';
+import { Post } from '../types';
 import PostListItemContainer from './PostListItemContainer';
 
 const StyledPageListContainer = styled.div`

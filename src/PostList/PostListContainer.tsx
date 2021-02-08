@@ -10,7 +10,7 @@ const mapStatetoProps = (state: ApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getPostList: () => dispatch(fetchPostList())
+    getPostList: () => dispatch(fetchPostList(null, null))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(PostList);

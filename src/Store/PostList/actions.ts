@@ -1,13 +1,15 @@
 import { Post } from "../../types";
 import { DismissPostItemAction, DISMISS_POST_ITEM, FetchPostListAction, FetchPostListErrorAction, FetchPostListSuccessAction, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS, SelectPostItemAction, SELECT_POST_ITEM } from "./types";
 
-export const fetchPostList = (): FetchPostListAction => {
+export const fetchPostList = (pageBefore: string | null, pageAfter: string | null): FetchPostListAction => {
     return {
         type: FETCH_POST_LIST,
-        payload: null
+        payload: {
+            pageBefore,
+            pageAfter
+        }
     };
 };
-
 export const fetchPostListSuccess = (data: any): FetchPostListSuccessAction => {
     return {
         type: FETCH_POST_LIST_SUCCESS,
