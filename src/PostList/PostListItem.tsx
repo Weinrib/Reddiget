@@ -5,7 +5,7 @@ import { StyledAuthorHeader, StyledAuthorSpan, StyledComments } from '../Layout/
 import { Post } from '../types';
 
 interface PostListItemProperties extends Partial<Post> {
-    onRemove: (id: string) => any;
+    
 }
 
 const StyledDiv = styled.div`
@@ -103,8 +103,7 @@ const PostListItem = (
         url,
         thumbnail,
         num_comments,
-        is_video,
-        onRemove 
+        is_video
     }: PostListItemProperties) => {
 
     const [postWasRead, setPostWasRead] = React.useState(false);
@@ -112,7 +111,7 @@ const PostListItem = (
     const onDismiss = (e: SyntheticEvent, id?: string) => {
         if(!id) return;
 
-        onRemove(id);
+       // onRemove(id);
         e.stopPropagation();
     };
 

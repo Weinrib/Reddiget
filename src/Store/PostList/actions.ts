@@ -1,6 +1,6 @@
 import { FetchPostListAction, FetchPostListErrorAction, FetchPostListSuccessAction, FETCH_POST_LIST, FETCH_POST_LIST_ERROR, FETCH_POST_LIST_SUCCESS } from "./types";
 
-export const fetchPostList = (loading: boolean): FetchPostListAction => {
+export const fetchPostList = (): FetchPostListAction => {
     return {
         type: FETCH_POST_LIST,
         payload: null

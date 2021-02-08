@@ -10,14 +10,14 @@ const initialState: PostListState = {
     }
 };
 
-export default (state: PostListState = initialState, action: PostListAction) => {
-    const response = action?.payload?.content;
+export default (state: PostListState = initialState, action) => {
+    const response = action.payload;
     switch (action.type) {
         case FETCH_POST_LIST_SUCCESS:
             return {
                 loading: false,
                 content: {
-                    data: response?.data,
+                    data: response?.children.map((post) => post.data),
                     before: response?.before,
                     after: response?.after,
                     modhash: response?.modhash

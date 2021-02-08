@@ -6,6 +6,7 @@ import Navbar from './Layout/Navbar';
 import Pagination from './Layout/Pagination';
 import PostDetail from './PostDetail/PostDetail';
 import PostList from './PostList/PostList';
+import PostListContainer from './PostList/PostListContainer';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -54,7 +55,7 @@ const App = () => {
         <StyledContainer>
           <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
             <Pagination></Pagination>
-            <PostList />
+            <PostListContainer />
           </StyledPostsContainer>
           {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
         </StyledContainer>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PostListItem from './PostListItem';
 import { useSpring, animated, useTransition } from 'react-spring';
+import { Post } from '../types';
 
 const StyledPageListContainer = styled.div`
     background-color: #282c34;
@@ -145,20 +146,28 @@ const test = [
     }
 ];
 
-const PostList = () => {
+interface PostListProperties {
+    postList: Array<Post>;
+    loading: boolean;
+    getPostList: () => any;
+}
 
-    const [postLists, setPostLists] = React.useState(test);
 
-    const listTransitions = useTransition(postLists, item => item.id, {
+const PostList = ({ postList, loading, getPostList }: PostListProperties) => {
+
+    const listTransitions = useTransition(postList, item => item.id, {
         from: { opacity: 0, transform: "translate3d(-25%, 0px, 0px)" },
         enter: { opacity: 1, transform: "translate3d(0%, 0px, 0px)" },
         leave: { opacity: 0, height: 'auto', transform: "translate3d(-25%, 0px, 0px)" }
     });
 
-    const removePost = (id: string) => {
-        const newPostList = postLists.filter((item) => item.id !== id);
-        setPostLists(newPostList);
-    }
+    React.useEffect(() => {
+        getPostList();
+    }, []);
+
+    React.useEffect(() => {
+        console.log(postList);
+    }, [postList]);
 
     return (
         <StyledPageListContainer>
@@ -174,7 +183,6 @@ const PostList = () => {
                             title={item.title}
                             thumbnail={item.thumbnail}
                             url={item.url}
-                            onRemove={removePost}
                         />
                     </animated.div>
                 )

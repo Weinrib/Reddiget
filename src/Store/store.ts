@@ -13,8 +13,6 @@ export interface ApplicationState {
     selectedPost: Post;
 };
 
-const sagaMiddleware = createSagaMiddleware();
-
 export const reducers = combineReducers({
     posts: postListReducer
 });
@@ -28,6 +26,8 @@ export const rootSaga = function* root() {
     const watchers = [...fetchListWatchers];
     yield all(watchers);
 };
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(reducers, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
