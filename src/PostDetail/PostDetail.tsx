@@ -103,6 +103,7 @@ const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
         <StyledContainer>
             <StyledTitleContainer>
                 <h3>{post?.title}</h3>
+            dafuq mate                                
             </StyledTitleContainer>
             {   !post?.is_self
                 && <StyledImageContainer>
