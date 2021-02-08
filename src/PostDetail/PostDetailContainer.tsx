@@ -5,7 +5,7 @@ import PostDetail from "./PostDetail";
 import { dismissSelectedPost } from "../Store/PostList/actions";
 
 const mapStatetoProps = (state: ApplicationState) => ({
-    post: state.posts.selectedPost
+    post: state.posts.selectedPost || {}
 });
 
 const mapDispatchToProps = (dispatch) => ({

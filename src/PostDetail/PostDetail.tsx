@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import styled from 'styled-components';
-import { CHECK_IF_GIFV, REPLACE_GIFV_WITH_MP4 } from '../common';
+import { CHECK_IF_GIFV, DEVICE_APPLIES_FOR_SPLIT_LAYOUT, REPLACE_GIFV_WITH_MP4 } from '../common';
 import { FLEX_CENTER_STYLE, StyledAuthorHeader, StyledAuthorSpan, Button, StyledCenteredDiv, StyledComments } from '../Layout/common';
 import { Post } from '../types';
 
@@ -91,40 +91,45 @@ const FLEX_WITH_MARGIN_STYLE = {
 };
 
 interface PostDetailProperties {
-    post: Partial<Post> | null;
+    post: Partial<Post>;
     dismissPost: () => any;
 }
 
 const PostDetail = ({ post, dismissPost }: PostDetailProperties) => {
+
+    const { url, author, is_self, is_video, title, media, created_utc, num_comments, selftext } = post;
 
     const imageIsGifv = CHECK_IF_GIFV(post?.url);
 
     return (
         <StyledContainer>
             <StyledTitleContainer>
-                <h3>{post?.title}</h3>
+                <h3>{title}</h3>
             </StyledTitleContainer>
-            {   !post?.is_self
+            {   is_self
                 && <StyledImageContainer>
-                    {!post?.is_video && !imageIsGifv && <img src={post?.url} width="100%"/>}
-                    {post?.is_video && <video autoPlay={true} src={post?.media?.reddit_video.fallback_url} width="100%"/>}
+                    {is_video && !imageIsGifv && <img src={url} width="100%" />}
+                    {is_video && <video autoPlay={true} src={media?.reddit_video.fallback_url} width="100%" />}
                     {imageIsGifv &&
                         <video preload="auto" autoPlay loop width="100%">
-                            <source src={REPLACE_GIFV_WITH_MP4(post?.url)} type="video/mp4"></source>
+                            <source src={REPLACE_GIFV_WITH_MP4(url)} type="video/mp4"></source>
                         </video>
                     }
                 </StyledImageContainer>
             }
-            <div>{post?.selftext}</div>
+            {is_self && <div>{selftext}</div>}
             <StyledAuthorHeader style={FLEX_WITH_MARGIN_STYLE}>
-                <span>{`Sent by `}<StyledAuthorSpan>{post?.author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{post?.created_utc}</Moment></span>
+                <span>{`Sent by `}<StyledAuthorSpan>{author}</StyledAuthorSpan>&nbsp;<Moment unix fromNow>{created_utc}</Moment></span>
             </StyledAuthorHeader>
             <StyledComments style={FLEX_WITH_MARGIN_STYLE}>
-                <span>{`${post?.num_comments} comments`}</span>
+                <span>{`${num_comments} comments`}</span>
             </StyledComments>
-            <StyledGoBackButtonContainer>
-                <StyledButton onClick={() => dismissPost()}>&laquo; Go back</StyledButton>
-            </StyledGoBackButtonContainer>
+            {
+                !DEVICE_APPLIES_FOR_SPLIT_LAYOUT && 
+                <StyledGoBackButtonContainer>
+                    <StyledButton onClick={() => dismissPost()}>&laquo; Go back</StyledButton>
+                </StyledGoBackButtonContainer>
+            }
         </StyledContainer>
     );
 }

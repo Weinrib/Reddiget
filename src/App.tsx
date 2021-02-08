@@ -2,6 +2,7 @@ import React from 'react';
 import { animated, useTransition, UseTransitionResult } from 'react-spring';
 import styled, { css } from 'styled-components';
 import './App.css';
+import { DEVICE_APPLIES_FOR_SPLIT_LAYOUT } from './common';
 import Navbar from './Layout/Navbar';
 import PaginationContainer from './Layout/Pagination/PaginationContainer';
 import PostDetailContainer from './PostDetail/PostDetailContainer';
@@ -50,8 +51,6 @@ const MobileListHandler = styled.div`
 
 const App = ({ isPostSelected }: AppProperties) => {
 
-  const deviceAppliesForSplitLayout = window.innerWidth >= 1100;
-
   const transitions = useTransition(isPostSelected, 1, {
     config: { delay: 2000 },
     from: { opacity: 0, width: '0px', transform: "translate3d(20px, 0px, 0px)" },
@@ -62,14 +61,14 @@ const App = ({ isPostSelected }: AppProperties) => {
     <React.Fragment>
       <Navbar></Navbar>
       <StyledContainer>
-        <StyledPostsContainer deviceAppliesForSplitLayout={deviceAppliesForSplitLayout}>
-          <MobileListHandler deviceAppliesForSplitLayout={deviceAppliesForSplitLayout} isPostSelected={isPostSelected}>
+        <StyledPostsContainer deviceAppliesForSplitLayout={DEVICE_APPLIES_FOR_SPLIT_LAYOUT}>
+          <MobileListHandler deviceAppliesForSplitLayout={DEVICE_APPLIES_FOR_SPLIT_LAYOUT} isPostSelected={isPostSelected}>
             <PaginationContainer />
             <PostListContainer />
           </MobileListHandler>
-          {!deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}
+          {!DEVICE_APPLIES_FOR_SPLIT_LAYOUT && isPostSelected && buildDetailsContainer(transitions)}
         </StyledPostsContainer>
-        {deviceAppliesForSplitLayout && isPostSelected && buildDetailsContainer(transitions)}
+        {DEVICE_APPLIES_FOR_SPLIT_LAYOUT && isPostSelected && buildDetailsContainer(transitions)}
       </StyledContainer>
     </React.Fragment>
   );

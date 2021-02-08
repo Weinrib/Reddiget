@@ -9,5 +9,7 @@ export const GET_THUMBNAIL = (thumb: string | undefined) => {
     return thumb;
 };
 
+export const DEVICE_APPLIES_FOR_SPLIT_LAYOUT = window.innerWidth >= 1100;
+
 export const REPLACE_GIFV_WITH_MP4 = (url: string | undefined) => url?.replace(GIFV_EXTENSION, MP4_EXTENSION);
 export const CHECK_IF_GIFV = (url: string | undefined) => url?.endsWith(GIFV_EXTENSION);
