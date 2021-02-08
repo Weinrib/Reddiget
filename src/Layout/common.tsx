@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 export const FLEX_CENTER_STYLE = {
     display: 'flex',
@@ -26,3 +27,7 @@ export const StyledCenteredDiv = styled.div`
     display: flex;
     justify-content: center;
 `;
+
+export const Spinner = ({ loading }) => {
+    return <ScaleLoader color={'red'} loading={loading} height={50} width={10} radius={2} margin={2} />
+};

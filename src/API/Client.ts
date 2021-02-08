@@ -7,6 +7,6 @@ export const fetchPostList = () => {
         .then((response: any) => {
             return response?.data?.data;
         }).catch((error: any) => {
-            debugger;
+            return null;
         });
 };

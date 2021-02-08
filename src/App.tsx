@@ -57,7 +57,7 @@ const App = () => {
             <Pagination></Pagination>
             <PostListContainer />
           </StyledPostsContainer>
-          {!deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
+          {deviceAppliesForSplitLayout && buildDetailsContainer(transitions)}
         </StyledContainer>
       </React.Fragment>
   );
